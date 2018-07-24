@@ -5,13 +5,13 @@
 [https://github.com/sourceryinstitute/OpenCoarrays/blob/master/README.md]:#
 <div align="center">
 
-[![Sourcery Institute][sourcery-institute logo]][Sourcery, Inc.]
+[![Sourcery Institute][sourcery-institute logo]][Sourcery Institute]
 
 
 ISO_Fortran_binding
 ===================
 
-[About this library](#about-this-library) | [Build, test, and instal](#build-test-and-install) 
+[About](#about-this-library) | [Installing](#build-test-and-install) 
 
 </div>
 
@@ -43,3 +43,4 @@ make install
 ```
 
 [sourcery-institute logo]: http://www.sourceryinstitute.org/uploads/4/9/9/6/49967347/sourcery-logo-rgb-hi-rez-1.png
+[Sourcery Institute]: http://www.sourceryinstitute.org
