@@ -140,4 +140,15 @@ add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 
 enable_testing()
 
-add_test(all_unit_tests tests/ISO_Fortran_binding_tests)
+set( unit_tests
+  CFI_address
+  CFI_deallocate
+  CFI_establish
+  CFI_is_contiguous
+  CFI_section
+  CFI_select_part
+  CFI_setpointer
+)
+foreach(unit_test ${unit_tests})
+  add_test("${unit_test}-test" tests/test-${unit_test})
+endforeach()
