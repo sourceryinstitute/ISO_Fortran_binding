@@ -31,7 +31,7 @@
    POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "../../../iso-fortran-binding/ISO_Fortran_binding.h"
+#include "ISO_Fortran_binding.h"
 #include <complex.h>
 #include <stdio.h>
 #include <stdlib.h>
