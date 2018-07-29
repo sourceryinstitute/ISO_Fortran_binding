@@ -1,8 +1,8 @@
 /*
    OpenCoarrays is distributed under the OSI-approved BSD 3-clause License:
    OpenCoarrays -- ISO_Fortran_binding standard-compliant interoperability with C.
-   Copyright (c) 2015, Sourcery, Inc.
-   Copyright (c) 2015, Sourcery Institute
+   Copyright (c) 2018, Sourcery, Inc.
+   Copyright (c) 2018, Sourcery Institute
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

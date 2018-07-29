@@ -134,7 +134,7 @@ include_directories(include)
 add_subdirectory(src)
 add_subdirectory(tests)
 
-install(DIRECTORY include DESTINATION .)
+install(DIRECTORY include DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 
