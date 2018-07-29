@@ -17,7 +17,7 @@ ISO_Fortran_binding
 
 About this library
 ------------------
-ISO_Fortran_binding supports C/Fortran interoperability by providing the [Fortran 2018 Draft International Standard]'s `ISO_Fortran_binding.h` C header file, corresponding function definitions, and CMake scripts for building, testing, and installing static and dynamic libraries. C programs may use the provided function to manipulate interoperable Fortran data objects by exploiting metadata describing the type, rank, extents, contiguity, and other information about the object.  
+ISO_Fortran_binding supports C/Fortran interoperability by providing the [Fortran 2018 Final Draft International Standard]'s `ISO_Fortran_binding.h` C header file, corresponding function definitions, and CMake scripts for building, testing, and installing static and dynamic libraries. C programs may use the provided function to manipulate interoperable Fortran data objects by exploiting metadata describing the type, rank, extents, contiguity, and other information about the object.  
 
 * `CFI_allocate`, `CFI_deallocate`. Allocate or deallocate Fortran allocatable variables. 🐏 
 * `CFI_establish`. Establish the metadata necessary to access Fortran variables inside a C descriptor `struct`.
@@ -27,7 +27,7 @@ ISO_Fortran_binding supports C/Fortran interoperability by providing the [Fortra
 * `CFI_section`. Update a C descriptor to select a section of an array. The array can be of interoperable derived types. The array can also be composed of elements of a derived type, i.e., a C descriptor updated by `CFI_select_part`. The array can also be a section.
 * `CFI_setpointer`: Update a C descriptor to point at a Fortran variable. 🏹 
 
-[Fortran 2018 Draft International Standard]: http://isotc.iso.org/livelink/livelink?func=ll&objId=19442438&objAction=Open&viewType=1
+[Fortran 2018 Final Draft International Standard]: http://isotc.iso.org/livelink/livelink?func=ll&objId=19442438&objAction=Open&viewType=1
 
 
 Build, test, and install
@@ -36,7 +36,7 @@ Build, test, and install
 cd ISO_Fortran_binding 
 mkdir build
 cd build
-CC=<insert-C-compiler-name> FC=<insert-Fortran-compiler-name> cmake .. -DCMAKE_INSTALL_PREFIX=<insert-install-location-here>
+cmake .. -DCMAKE_INSTALL_PREFIX=<insert-install-path-here>
 make
 ctest
 make install
