@@ -34,10 +34,10 @@ extern "C" {
 #define CFI_attribute_other 2
 
 /* Error codes.
-   CFI_FAILURE and CFI_INVALID_STRIDE should be defined in the standard because they are useful to the implementation of the functions.
+   CFI_INVALID_STRIDE should be defined in the standard because they are useful to the implementation of the functions.
  */
-#define CFI_FAILURE 0
-#define CFI_SUCCESS 1
+#define CFI_SUCCESS 0
+#define CFI_FAILURE 1
 #define CFI_ERROR_BASE_ADDR_NULL 2
 #define CFI_ERROR_BASE_ADDR_NOT_NULL 3
 #define CFI_INVALID_ELEM_LEN 4
