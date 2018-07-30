@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-set(ISO_Fortran_binding_version 0.9.0)
+set(ISO_Fortran_binding_version 1.0.0)
 project(ISO_Fortran_binding VERSION "${ISO_Fortran_binding_version}" LANGUAGES C Fortran)
 
 # Set the type/configuration of build to perform
