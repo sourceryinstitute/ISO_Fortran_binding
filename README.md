@@ -42,5 +42,9 @@ ctest
 make install
 ```
 
+Known issues
+------------
+This repository uses GNU C language extensions that are not supported by the clang compiler.
+
 [sourcery-institute logo]: http://www.sourceryinstitute.org/uploads/4/9/9/6/49967347/sourcery-logo-rgb-hi-rez-1.png
 [Sourcery Institute]: http://www.sourceryinstitute.org
