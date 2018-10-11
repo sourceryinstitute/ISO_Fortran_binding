@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 set(ISO_Fortran_binding_version 1.0.0)
-project(ISO_Fortran_binding VERSION "${ISO_Fortran_binding_version}" LANGUAGES C Fortran)
+project(ISO_Fortran_binding VERSION "${ISO_Fortran_binding_version}" LANGUAGES C)
 
 # Set the type/configuration of build to perform
 set ( CMAKE_CONFIGURATION_TYPES "Debug" "Release" "MinSizeRel" "RelWithDebInfo" "CodeCoverage" )
@@ -34,62 +34,16 @@ if ("${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
 endif()
 
 #Report untested Fortran compiler unless explicitly directed to build all examples.
-if ("${CMAKE_Fortran_COMPILER_ID}" MATCHES "GNU" )
+if ("${CMAKE_C_COMPILER_ID}" MATCHES "GNU" )
   set ( CMAKE_C_FLAGS_CODECOVERAGE "-fprofile-arcs -ftest-coverage -O0"
     CACHE STRING "Code coverage C compiler flags")
-  set ( CMAKE_Fortran_FLAGS_CODECOVERAGE "-fprofile-arcs -ftest-coverage -O0"
-    CACHE STRING "Code coverage Fortran compiler flags")
 else()
   message(WARNING
     "\n"
-    "Attempting to build with untested Fortran compiler: ${CMAKE_Fortran_COMPILER_ID}."
+    "Attempting to build with untested C compiler: ${CMAKE_C_COMPILER_ID}.  This project uses"
+    "variable-length arrays, a GCC extension that might not be supported by ${CMAKE_C_COMPILER_ID}."
     "Please report any issues at https://github.com/sourceryinstitute/ISO_Fortran_binding/issue\n\n"
   )
-endif()
-
-#-----------------------------------------------------------------
-# Set CMAKE_Fortran_COMPILER_VERSION if CMake doesn't do it for us
-#-----------------------------------------------------------------
-if (  NOT CMAKE_Fortran_COMPILER_VERSION )
-  if ( NOT (CMAKE_VERSION VERSION_LESS 3.3.1) )
-    message( AUTHOR_WARNING
-     "CMake ${CMAKE_VERSION} should know about Fortran compiler versions but is missing CMAKE_Fortran_COMPILER_VERSION variable."
-    )
-  endif()
-  # No CMAKE_Fortran_COMPILER_VERSION set, build our own
-  # Try extracting it directly from ISO_FORTRAN_ENV's compiler_version
-  # Write program for introspection
-  file( WRITE "${CMAKE_BINARY_DIR}/get_compiler_ver.f90"
-    "program main
-     use iso_fortran_env, only: compiler_version, output_unit
-     write(output_unit,'(a)') compiler_version()
-end program"
-  )
-  try_run( PROG_RAN COMPILE_SUCCESS
-    "${CMAKE_BINARY_DIR}" "${CMAKE_BINARY_DIR}/get_compiler_ver.f90"
-    RUN_OUTPUT_VARIABLE VER_STRING
-  )
-  if ( COMPILE_SUCCESS )
-    string( REGEX MATCH "[0-9]+\\.[0-9]+(\\.[0-9]+)?"
-      DETECTED_VER "${VER_STRING}"
-    )
-    message( STATUS "Detected Fortran compiler as ${VER_STRING}" )
-    message( STATUS "Extracted version number: ${DETECTED_VER}" )
-  endif()
-  if( ( NOT COMPILE_SUCCESS ) OR ( NOT DETECTED_VER ) )
-    message( WARNING "Could not reliably detect Fortran compiler version. We'll infer it from
-the C compiler if it matches the Fortran compiler ID." )
-  endif()
-  if( "${CMAKE_C_COMPILER_ID}" MATCHES "${CMAKE_Fortran_COMPILER_ID}" )
-    set( DETECTED_VER "${CMAKE_C_COMPILER_VERSION}" )
-  else()
-	  message( FATAL_ERROR "Failed all attempts to detect the Fortran compiler version, cannot proceed!" )
-  endif()
-  set( CMAKE_Fortran_COMPILER_VERSION "${DETECTED_VER}" )
-endif()
-
-if(CMAKE_BUILD_TYPE MATCHES "Debug|DEBUG|debug")
-  add_definitions(-DEXTRA_DEBUG_OUTPUT)
 endif()
 
 #---------------------------------------
@@ -109,26 +63,6 @@ if (NOT C_SOURCE_COMPILES)
     "cmake-gui or ccmake."
     )
 endif()
-
-#----------------------------------------------------------
-# Make sure a simple "hello world" Fortran program compiles
-#----------------------------------------------------------
-set(OLD_REQUIRED_FLAGS ${CMAKE_REQUIRED_FLAGS})
-if ("${CMAKE_Fortran_COMPILER_ID}" MATCHES "GNU" )
-  set(CMAKE_REQUIRED_FLAGS "-ffree-form")
-endif()
-include (CheckFortranSourceCompiles)
-CHECK_Fortran_SOURCE_COMPILES("
-program main
-implicit none
-print *,'Hello, world!'
-end program
-"
-Fortran_SOURCE_COMPILES)
-if ("${CMAKE_Fortran_COMPILER_ID}" MATCHES "GNU" )
-  set (CMAKE_REQUIRED_FLAGS ${OLD_REQUIRED_FLAGS})
-endif()
-unset(OLD_REQUIRED_FLAGS)
 
 include_directories(include)
 add_subdirectory(src)
