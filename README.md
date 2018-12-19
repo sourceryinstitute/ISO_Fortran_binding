@@ -11,7 +11,7 @@
 ISO_Fortran_binding
 ===================
 
-[About](#about-this-library) | [Installing](#build-test-and-install) 
+[About](#about-this-library) | [Installing](#build-test-and-install) | [Contributing](#contributing) | [Known Issues](#known-issues)
 
 </div>
 
@@ -42,9 +42,25 @@ ctest
 make install
 ```
 
+Contributing
+------------
+* Please submit questions, suggestions, or bug reports via our Issues page.
+* Prior to submitting code via pull requests after 
+    1. Signing our [Contributor License Agreemnt].
+    2. Reviewing the [GitHub Flow] workflow.
+
 Known issues
 ------------
 This repository uses GNU C language extensions that are not supported by the clang compiler.
 
+
+[About]: #about-this-library
+[Installing]: #build-test-and-install
+[Contributing]: #contributing
+[Known Issues]: #known-issues
+[Contributor License Agreemnt]: https://cla-assistant.io/sourceryinstitute/ISO_Fortran_binding
+[GitHub Flow]: https://guides.github.com/introduction/flow/
+
 [sourcery-institute logo]: http://www.sourceryinstitute.org/uploads/4/9/9/6/49967347/sourcery-logo-rgb-hi-rez-1.png
 [Sourcery Institute]: http://www.sourceryinstitute.org
+
